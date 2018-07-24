@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+</head>
+<body>
+    <ul id="myLink">
+        <li id="1">aaa</li>
+        <li id="2">bbb</li>
+        <li id="3">ccc</li>
+    </ul>
+</body>
+<script>
+    /**没有事件委托
+	var myLink = document.getElementById('myLink');
+	var li = myLink.getElementsByTagName('li');
+
+	for(var i = 0; i < li.length; i++) {
+		li[i].onclick = function(e) {
+			console.log(e)
+			var e = event || window.event;
+			console.log(e)
+			var target = e.target || e.srcElement;
+			console.log(target)
+			alert(e.target.id + ':' + e.target.innerText);
+		};
+	}
+     * */
+    var myLink = document.getElementById('myLink');
+    myLink.onclick = function(e) {
+	    var e = event || window.event;
+	    var target = e.target || e.srcElement;
+	    switch(target.id) {
+		    case '1':
+			    target.style.backgroundColor = 'red';
+			    break;
+		    case '2':
+			    alert('这是第二项');
+			    break;
+		    case '3':
+			    alert(e.target.id + ':' + e.target.innerText);
+			    break;
+		    default:
+			    alert('...');
+	    }
+    };
+</script>
+</html>
