@@ -13,6 +13,7 @@
     <li id="1" class="link"><a href="javascript:;"><span>aaa</span></a></li>
     <li id="2" class="link"><a href="javascript:;">bbb</a></li>
     <li id="3" class="link">ccc</li>
+    <li>ddd</li>
 </ul>
 </body>
 <script>
@@ -44,7 +45,9 @@
 
 		// 如果元素被指定的选择器字符串选择，Element.matches()  方法返回 true; 否则返回 false。
 		// 对于不支持 Element.matches() 或 Element.matchesSelector()，但支持 document.querySelectorAll() 方法的浏览器，存在以下替代方案
-		if (!Element.prototype.matches) {
+        // 添加Element原型上的matches方法？
+        if (!Element.prototype.matches) {
+			alert(1)
 			Element.prototype.matches =
 				Element.prototype.matchesSelector ||
 				Element.prototype.mozMatchesSelector ||
@@ -61,23 +64,36 @@
 
 		// 事件处理逻辑
 		addEvent(parentSelector, events, function(e) {
-            alert(e)
+			console.log(Element.prototype)
+            console.log(e)
 			// 兼容性处理
 			var e = e || window.event;
 			var t = e.target || e.srcElement;
 
 			// currentTarget === parentSelector
 			var currentTarget = e.currentTarget;
-
+			console.log(t.prototype,1)
+            console.log(t.matches(targetSelector),2)
 			// 遍历并判断是否为目标元素，如果不是，则往元素的 parentNode 继续查找
 			while(!t.matches(targetSelector)) {
+				console.log(t,11)
+				console.log(currentTarget,22)
 				// 如果是目标元素则跳出循环
 				if(t === currentTarget) {
+//					console.log(t,0)
+//					console.log(currentTarget,0)
 					t = null;
 					break;
 				}
 				t = t.parentNode;
+				console.log(t,33)
 			}
+//            if(t.matches(targetSelector)){
+//				return fn.call(t, Array.prototype.slice.call(arguments));
+//            }else {
+//            	t = t.parentNode
+//	            fn.call(t, Array.prototype.slice.call(arguments));
+//            }
 
 			if(t) {
 				// 将回调函数的 this 指向目标元素
