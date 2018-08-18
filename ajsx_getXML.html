@@ -22,7 +22,7 @@
 				// xml对象 在浏览器段 就是一个 document对象
 				// 解析时 可以直接使用 querySelector 或者 getElementById等等 document对象 有的语法
 				console.log(ajax.responseXML,1);
-//				console.log(ajax.responseXML.querySelector('kuzi').innerHTML);
+				console.log(ajax.responseXML.querySelector('kuzi>test').innerHTML,2);
 				// 下面这个 页面文档对象 如果要获取某个标签
 				console.log(window.document);
 			}

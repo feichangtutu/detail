@@ -33,9 +33,9 @@
 
 				// 数据是保存在 异步对象的 属性中
 				console.log(ajaxObj.responseText);
-
+                console.log(document.querySelector('h1').innerHTML)
 				// 修改页面的显示
-				document.querySelector('h1').innerHTML = ajaxObj.responseText;
+				document.querySelector('h1').innerHTML = ajaxObj.responseText.toString();
 			}
 		}
 	}
